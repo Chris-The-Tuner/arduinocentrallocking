@@ -1,3 +1,10 @@
+//This script is written by Chris-The-Tuner (Christian Schmela)
+//Web: http://chris-the-tuner.tk/
+//Mail: christhetuner1993@googlemail.com
+//The script is under the GNU GENERAL PUBLIC LICENSE V3
+//Have fun using it ;)
+
+
 //Settings
 int lightpin = 5; //pin for light (warning lights)
 int hornpin = 6; //pin for the horn
