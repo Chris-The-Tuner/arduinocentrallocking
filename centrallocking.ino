@@ -28,6 +28,7 @@ void setup() //setting up the pins
  pinMode(relais2pin, OUTPUT);
  pinMode(lightpin, OUTPUT);
  pinMode(hornpin, OUTPUT);
+ Serial.begin(9600);
 }
 
 void loop() //loop and wait for a signal
@@ -37,6 +38,7 @@ void loop() //loop and wait for a signal
  {
   if (locked == 0) //if doors are locked react like this
   {
+   Serial.print("Unlocking the doors...\n");
    digitalWrite(relais1pin, LOW); //polarity is now set to "closing" (mainly the relay should now be off to save battery power)
    digitalWrite(lightpin, HIGH); //from now on lights are blinking (visual making of closing sequence)
    digitalWrite(relais2pin, HIGH); //door motors should close now
@@ -48,6 +50,7 @@ void loop() //loop and wait for a signal
    delay(500); //waiting one more moment for the lights to turn off
    digitalWrite(lightpin, LOW); //lights should be turned off now
    locked = 1; //setting value to locked doors
+   Serial.print("Doors are now unlocked !\n");
    delay(5000); //sleeping for 5 seconds (don't un-lock the doors again by accident)
   }
  }
@@ -57,6 +60,7 @@ void loop() //loop and wait for a signal
  {
   if (locked == 1) //if doors are unlocked react like this
   {
+   Serial.print("Locking the doors...\n");
    digitalWrite(relais1pin, HIGH); //polarity is now set to "opening"
    digitalWrite(lightpin, HIGH); //from now on lights are blinking (visual making of closing sequence)
    digitalWrite(relais2pin, HIGH); //door motors should open now
@@ -69,6 +73,7 @@ void loop() //loop and wait for a signal
    digitalWrite(lightpin, LOW); //lights should be turned off now
    digitalWrite(relais1pin, LOW); //turning off the relay (state: closing) to save battery power)
    locked = 0; //setting value to un-locked doors
+   Serial.print("Doors are now locked !\n");
    delay(5000); //sleeping for 5 seconds (don't lock the doory by accident)
   }
  }
